@@ -30,8 +30,8 @@ CREATE TABLE Clinica
 ( IdClinica INT PRIMARY KEY IDENTITY,
   NomeFantasia VARCHAR(256) NOT NULL ,
   Endereco VARCHAR (256) NOT NULL,
-  HorarioAbertura TIME NOT NULL,
-  HorarioFechamento TIME NOT NULL,
+  HorarioAbertura TIME(0) NOT NULL,
+  HorarioFechamento TIME(0) NOT NULL,
   RazaoSocial VARCHAR (256) NOT NULL UNIQUE,
   CNPJ VARCHAR (14) NOT NULL UNIQUE
 )
@@ -44,7 +44,10 @@ CREATE TABLE Paciente
   CPF CHAR(11) NOT NULL UNIQUE,
   Telefone VARCHAR (30) NOT NULL,
   CEP VARCHAR (9) NOT NULL,
-  RG CHAR (9) NOT NULL UNIQUE
+  RG CHAR (9) NOT NULL UNIQUE,
+  FeedBack VARCHAR (256) NOT NULL,
+  Exibe BIT DEFAULT(0)
+
 )
 
 CREATE TABLE Medico
@@ -63,7 +66,8 @@ CREATE TABLE Consulta
   IdPaciente INT FOREIGN KEY REFERENCES Paciente(IdPaciente)NOT NULL ,
   IdStatusConsulta INT FOREIGN KEY REFERENCES StatusConsulta(IdStatusConsulta)NOT NULL ,
   DataConsulta DATE NOT NULL ,
-  HorarioConsulta TIME  NOT NULL
+  HorarioConsulta TIME(0)  NOT NULL,
+  Descricao VARCHAR(256)NOT NULL
 )
 
 
